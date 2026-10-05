@@ -1,0 +1,7 @@
+*.bak
+*.tmp
+__pycache__/
+*.pyc
+.env
+.env.*
+background.json
