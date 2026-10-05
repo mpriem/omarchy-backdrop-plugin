@@ -8,7 +8,7 @@ switcher, and theme-change transitions.
 Choose a background for each workspace, pin one to each monitor, or rotate
 through your theme's images. A bar button opens the settings panel.
 
-![Backdrop settings](preview.png)
+![Backdrop demo: workspace backgrounds, rotation, and transitions](assets/backdrop-demo.gif)
 
 ## Requirements
 
