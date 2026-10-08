@@ -16,7 +16,7 @@ through your theme's images. A bar button opens the settings panel.
 - Python 3 (standard library only), Bash, `jq`, and Omarchy's shell utilities
 
 Validated locally against Omarchy `4.0.0.alpha`, Quickshell `0.3.1`, and Qt
-`6.11.2`. Backdrop runs as your user and does not require `sudo`.
+`6.11.2`. Backdrop runs as your user.
 
 ## Install
 
@@ -29,18 +29,12 @@ omarchy plugin enable backgrounds right
 The plugin ID is `backgrounds`; `right` adds its button to the bar. Backdrop
 replaces the built-in background service, so only one should be enabled.
 
-Alternatively, run `./install.sh` from a local checkout. It validates and copies
-runtime files, including uncommitted edits, replaces the installed plugin without
-a prompt, and enables it. If activation fails, it attempts to restore the previous
-installation and enabled states. Add the bar button afterwards with
-`omarchy plugin enable backgrounds right`.
-
 ## Configuration and local data
 
 Use the bar button to choose a mode, assign images, and adjust transitions.
 
 | Mode | Behavior |
-|---|---|
+| --- | --- |
 | Classic | One background everywhere, using Omarchy's usual selection |
 | Workspace | A background for each monitor's active workspace, assigned manually or distributed from the theme's images |
 | Pinned | A chosen background for each monitor |
@@ -81,7 +75,7 @@ Removal leaves your images and saved settings in place.
 ## Keys
 
 | Action | Result |
-|---|---|
+| --- | --- |
 | Double-click the desktop | Open the background picker |
 | Right-double-click the desktop | Open the theme switcher |
 | Click the bar button | Open settings |
