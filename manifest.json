@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "markpriem.backdrop",
   "name": "Backdrop",
-  "version": "1.1.0",
   "author": "markpriem",
+  "version": "1.1.0",
   "license": "MIT",
   "description": "Desktop backgrounds per workspace, pinned per monitor, rotating, or Omarchy's classic one image -- with transitions and a settings panel. Replaces omarchy.background.",
   "kinds": [

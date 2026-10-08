@@ -14,20 +14,30 @@ through your theme's images. A bar button opens the settings panel.
 
 - Omarchy's Quickshell shell and Lua Hyprland configuration
 - Python 3 (standard library only), Bash, `jq`, and Omarchy's shell utilities
+- Git for installation and updates through Omarchy's plugin manager
 
-Validated locally against Omarchy `4.0.0.alpha`, Quickshell `0.3.1`, and Qt
-`6.11.2`. Backdrop runs as your user.
+Automated checks run locally against Omarchy `4.0.4-1`, Quickshell `0.3.1`,
+and Qt `6.11.2`; see Development for their scope. Backdrop runs as your user
+inside the Omarchy shell, with the same permissions as that process. It reads
+local images and theme state and writes its settings; it needs no root access.
 
 ## Install
 
 ```bash
 omarchy plugin add https://github.com/mpriem/omarchy-backdrop-plugin
 omarchy plugin disable omarchy.background
-omarchy plugin enable backgrounds right
+omarchy plugin enable markpriem.backdrop --section right
 ```
 
-The plugin ID is `backgrounds`; `right` adds its button to the bar. Backdrop
-replaces the built-in background service, so only one should be enabled.
+The plugin ID is `markpriem.backdrop`; `--section right` adds its button to
+the bar. Backdrop replaces the built-in background service, so only one
+should be enabled.
+Disable any other custom background service as well.
+
+The add command asks you to trust the repository and may offer to enable it.
+Keep it disabled until the previous background service is disabled. For
+noninteractive installation, add `--yes` to the add command; it installs
+without enabling the plugin.
 
 ## Configuration and local data
 
@@ -47,8 +57,8 @@ with durations up to two seconds.
 
 Settings are stored in `~/.config/omarchy/background.json`; manual edits reload
 automatically. Invalid settings keep the last working configuration active.
-The plugin expects the default installation location,
-`~/.config/omarchy/plugins/backgrounds`.
+Omarchy installs it in `~/.config/omarchy/plugins/markpriem.backdrop/`.
+The catalog helper is resolved relative to the plugin directory.
 
 For scripts, use `omarchy-shell background`, for example:
 
@@ -65,8 +75,8 @@ The full `status` command includes those details.
 ## Remove
 
 ```bash
-omarchy plugin disable backgrounds
-omarchy plugin remove backgrounds
+omarchy plugin disable markpriem.backdrop
+omarchy plugin remove markpriem.backdrop
 omarchy plugin enable omarchy.background
 ```
 
@@ -91,9 +101,17 @@ apply changes as you adjust them.
 ## Development
 
 Run `./tests/validate.sh` with Node.js, Python 3, Quickshell, Qt 6's `qmlformat`,
-and `omarchy-plugin-validate` installed. Tests use temporary homes and do not
-change the active desktop. Multi-monitor rendering, GPU effects, and theme
-handoff still need live desktop testing.
+and Omarchy's plugin CLI installed. Tests use temporary homes and do not
+change the active desktop. Installation tests run the real add, enable,
+disable, and remove commands against an isolated Quickshell host using
+Omarchy's real plugin registry. They check the README commands, bar placement,
+settings preservation, invalid manifests, and duplicate installations.
+
+Offscreen QML tests cover settings persistence and failures, catalog loading,
+image lifetime and recovery, mode orchestration, and panel navigation. Some
+host interfaces are stubbed; these tests do not verify a live compositor.
+Multi-monitor rendering, GPU effects, and theme handoff still need live
+desktop testing.
 
 ## License
 
